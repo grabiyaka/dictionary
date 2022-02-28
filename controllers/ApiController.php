@@ -72,24 +72,31 @@ class ApiController
     
         $post = $this->post;
         $id = $post['id'];
-        $rating = $post['input'];
         $value = $post['value'];
+        $input = $post['rating'];
         
 
         $user_id = $_COOKIE["id"];
 
         $array = $this->connect->q(" SELECT * FROM users_dictionary WHERE `user_id` = '$user_id' ");
         echo $array->json();
-
-        if($array->rating == 1){
-            if($rating != 5){
-                $this->connect->q(" UPDATE users_dictionary SET rating = rating + 1 WHERE id='$id' ");
-            }
-        }else{
-            if($rating != 1){
-                $this->connect->q(" UPDATE users_dictionary SET rating = rating - 1 WHERE id='$id' ");
+        if($value){
+            $this->connect->q(" UPDATE users_dictionary SET rating = '$value' WHERE id='$id' ");
+        }
+        
+        if(isset($post['e'])){
+             if($post['e'] == 1){
+                if($input != 5){
+                    $this->connect->q(" UPDATE users_dictionary SET rating = rating + 1 WHERE id='$id' ");
+                }
+            }else{
+                if($input != 1){
+                    $this->connect->q(" UPDATE users_dictionary SET rating = rating - 1 WHERE id='$id' ");
+                }
             }
         }
+
+       
 
         return true;
 

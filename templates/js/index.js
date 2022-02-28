@@ -64,6 +64,7 @@ let app = new Vue({
             fd.append("id", id);
             fd.append("value", n);
             fd.append("input", "rating")
+            console.log(n)
             post("updateRating", fd, (msg) => {
                 this.api.forEach(e => {
                     if(e.id == id){
