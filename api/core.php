@@ -39,7 +39,7 @@ class myDB_Result extends MySQLi_Result
     }
 }
 
-$db = new myDB("localhost", "root", "", "en");
+$db = new myDB("localhost", "root", "", "dictionary");
 $db->set_charset("utf8");
 
 function post_check()

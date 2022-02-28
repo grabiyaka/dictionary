@@ -29,7 +29,7 @@ if(mb_strlen($login) < 5 || mb_strlen($login) > 90) //mb_strlen($login) длин
 
 $pass = md5($pass."dimaloh228aye");
 
-$mysql = new mysqli("localhost", "root", "", "en");
+$mysql = new mysqli("localhost", "root", "", "dictionary");
 
 $count = $mysql->query(" SELECT * FROM users_acc WHERE `login` = '$login' ")->num_rows;
 

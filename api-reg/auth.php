@@ -6,7 +6,7 @@ $pass = filter_var(trim( $_POST['pass']), FILTER_SANITIZE_STRING);
 
 $pass = md5($pass."dimaloh228aye");
 
-$mysql = new mysqli("localhost", "root", "", "en");
+$mysql = new mysqli("localhost", "root", "", "dictionary");
 
 
 $result = $mysql->query("SELECT * FROM `users_acc` WHERE `login` = '$login' AND `pass` = '$pass' ");
