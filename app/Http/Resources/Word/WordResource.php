@@ -18,6 +18,8 @@ class WordResource extends JsonResource
             'user_id' => $this->user_id,
             'original' => $this->original,
             'translate' => $this->translate,
+            'sentences' => $this->sentences,
+            'associations' => $this->associations
         ];
     }
 }

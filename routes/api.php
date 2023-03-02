@@ -17,16 +17,15 @@ use App\Http\Controllers\GetController;
 
 Route::get('get/word/{word}', GetController::class);
 
-Route::group(['middleware' => 'auth:sanctum'], function(){
-    Route::group(['namespace' => 'App\Http\Controllers\Word', 'prefix' => 'word'], function(){
-        Route::get('/{user_id}', ShowController::class);
-        //  Route::get('/get/{id}', IndexController::class);
-         Route::post('/', StoreController::class);
-         Route::delete('/{word}', DeleteController::class);
-        //  Route::patch('/{post}', UpdateController::class);
-        //  Route::delete('/{post}', DeleteController::class);
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::group(['namespace' => 'App\Http\Controllers\Word', 'prefix' => 'word'], function () {
+        Route::get('/user/{user_id}', ShowAllInUserController::class);
+        Route::get('/{word}', ShowController::class);
+        Route::post('/', StoreController::class);
+        Route::post('/update', UpdateController::class);
+        Route::delete('/{word}', DeleteController::class);
     });
- });
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

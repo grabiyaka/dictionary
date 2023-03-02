@@ -33,6 +33,11 @@ const router = createRouter({
             name: "dictionary",
             component: () => import("./components/Dictionary/Main.vue"),
         },
+        {
+            path: "/word/:user_id/:word_id",
+            name: "word",
+            component: () => import("./components/Dictionary/Word.vue"),
+        },
     ],
 });
 

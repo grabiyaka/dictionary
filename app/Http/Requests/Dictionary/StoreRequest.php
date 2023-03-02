@@ -27,6 +27,8 @@ class StoreRequest extends FormRequest
             'user_id' => '',
             'original' => '',
             'translate' => '',
+            'sentences' => [],
+            'associations' => []
         ];
     }
 }

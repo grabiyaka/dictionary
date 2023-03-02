@@ -13,7 +13,7 @@ export default {
   <LoadingComponent></LoadingComponent>
   <router-view v-slot="{ Component }">
     <transition name="slide" mode="out-in">
-      <div id="viewbox" :key="$route.path">
+      <div class="mb-5" id="viewbox" :key="$route.path">
         <component class="container" :is="Component"></component>
       </div>
     </transition>
