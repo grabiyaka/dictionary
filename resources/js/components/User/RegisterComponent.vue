@@ -2,12 +2,7 @@
   <div>
     <!-- Pills content -->
     <div class="tab-content mx-auto">
-      <div
-        class="tab-pane fade show active"
-        id="pills-login"
-        role="tabpanel"
-        aria-labelledby="tab-login"
-      >
+      <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
         <form class="text-center mx-auto">
           <!-- Email input -->
           <div class="form-outline mb-4">
@@ -39,12 +34,7 @@
 
         </form>
       </div>
-      <div
-        class="tab-pane fade"
-        id="pills-register"
-        role="tabpanel"
-        aria-labelledby="tab-register"
-      >
+      <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
         <form>
           <div class="text-center mb-3">
             <p>Sign up with:</p>
@@ -93,26 +83,14 @@
 
           <!-- Repeat Password input -->
           <div class="form-outline mb-4">
-            <input
-              type="password"
-              id="registerRepeatPassword"
-              class="form-control"
-            />
-            <label class="form-label" for="registerRepeatPassword"
-              >Repeat password</label
-            >
+            <input type="password" id="registerRepeatPassword" class="form-control" />
+            <label class="form-label" for="registerRepeatPassword">Repeat password</label>
           </div>
 
           <!-- Checkbox -->
           <div class="form-check d-flex justify-content-center mb-4">
-            <input
-              class="form-check-input me-2"
-              type="checkbox"
-              value=""
-              id="registerCheck"
-              checked
-              aria-describedby="registerCheckHelpText"
-            />
+            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+              aria-describedby="registerCheckHelpText" />
             <label class="form-check-label" for="registerCheck">
               I have read and agree to the terms
             </label>
@@ -128,7 +106,7 @@
   </div>
 </template>
   
-  <script>
+<script>
 import axios from "axios";
 export default {
   name: "Registration",
@@ -163,6 +141,7 @@ export default {
         this.password !== null &&
         this.password !== ""
       ) {
+        this.$store.commit("setLoading", true);
         axios.get("/sanctum/csrf-cookie").then((response) => {
           let validEmail =
             /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -187,10 +166,14 @@ export default {
                         "x_xsrf_token",
                         res.config.headers["X-XSRF-TOKEN"]
                       );
+                      this.email = ''
+                      this.password = ''
+                      this.password_confirmation = ''
+                      this.name = ''
                       this.$store.dispatch("getToken");
-                      this.$router.push({ name: "cabinet" });
+                      this.$router.push({ name: "profile" });
                     })
-                    .catch((err) => {});
+                    .catch((err) => { });
                 } else {
                   alert('name is shit');
                 }
@@ -204,6 +187,7 @@ export default {
             alert('email is shit');
           }
         });
+        this.$store.commit("setLoading", false);
       } else {
         alert('fill fields');
       }
@@ -212,5 +196,4 @@ export default {
 };
 </script>
       
-  <style>
-</style>
+<style></style>
