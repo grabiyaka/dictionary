@@ -32,17 +32,21 @@ class StoreController extends Controller
         if (isset($sentences)) {
             $array = [];
             foreach ($sentences as $sentence) {
-                $array['content'] = $sentence;
-                $array['word_id'] = $word_id;
-                Sentence::create($array);
+                if ($sentence) {
+                    $array['content'] = $sentence;
+                    $array['word_id'] = $word_id;
+                    Sentence::create($array);
+                }
             }
         }
         if (isset($associations)) {
             $array = [];
-            foreach ($associations as $associations) {
-                $array['content'] = $associations;
-                $array['word_id'] = $word_id;
-                Association::create($array);
+            foreach ($associations as $association) {
+                if ($association) {
+                    $array['content'] = $association;
+                    $array['word_id'] = $word_id;
+                    Association::create($array);
+                }
             }
         }
 
