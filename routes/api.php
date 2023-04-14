@@ -27,6 +27,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     });
 });
 
+Route::group(['namespace' => 'App\Http\Controllers\Image', 'prefix' => 'image'], function () {
+    Route::post('/', SaveAvatarController::class);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
